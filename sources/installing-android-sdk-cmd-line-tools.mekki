@@ -1,0 +1,32 @@
+\title Installing Android SDK platform-tools with Command Line Tools
+
+* Environment
+- Ubuntu 16.04
+
+* Prerequisites
+
+** Install JRE or JDK
+ $ sudo apt-get install openjdk-8-jre
+ or
+ $ sudo apt-get install openjdk-8-jdk
+
+* Download the Command Line Tools
+- [[https://developer.android.com/studio/index.html#command-tools]]
+
+* Install sdkmanager
+ $ mkdir -p ~/android-sdk
+ $ cd ~/android-sdk
+ $ unzip ~/Downloads/sdk-tools-linux-4333796.zip
+ $ cd tools/bin
+ $ ./sdkmanager --help
+
+* Install platform-tools
+ $ ./sdkmanager --list
+ $ ./sdkmanager "platform-tools"
+
+* Install others
+ $ ./sdkmanager "platforms;android-28" "build-tools;28.0.3"
+
+* Add tools to $PATH
+ $ echo 'PATH=~/android-sdk/platform-tools:~/android-sdk/tools/bin:$PATH' >> ~/.profile
+ $ sudo reboot

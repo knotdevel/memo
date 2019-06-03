@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+* {
+ font-family : 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', sans-serif;
+}
+
+body {
+ color:black;
+ background-color:white;
+ margin-left:10%;
+ margin-right:10%;
+}
+
+h2 {
+ padding-bottom: .3em;
+ border-bottom: 3px solid #888;
+ margin-bottom: .3em;
+ counter-reset:h3counter;
+ font-size:140%;
+}
+
+h3 {
+ counter-reset:h4counter;
+ border-bottom:  2px solid #888;
+ padding-top:    0.3em;
+ padding-bottom: 0.3em;
+ margin-top:     2.0em;
+ margin-bottom:  0.3em;
+ font-size:130%;
+}
+
+h3:before {
+ content:counter(h3counter)". ";
+ counter-increment:h3counter;
+}
+
+h4 {
+ counter-reset:h5counter;
+ padding-top: 1em;
+ padding-bottom: .3em;
+ border-bottom: 2px solid #888;
+ margin-bottom: .3em;
+ font-size:120%;
+}
+
+h4:before {
+ content:counter(h3counter)"."counter(h4counter)" ";
+ counter-increment:h4counter;
+}
+
+h5 {
+ padding-top: 1em;
+ padding-bottom: .3em;
+ border-bottom: 1px solid #888;
+ margin-bottom: .3em;
+ font-size:110%;
+}
+
+h5:before {
+ content:counter(h3counter)"."counter(h4counter)"."counter(h5counter)" ";
+ counter-increment:h5counter;
+}
+
+pre {
+ font-family: 'Courier New', 'ＭＳ ゴシック', Courier, Monaco, monospace;
+ font-size:100%;
+ border-top:#DDDDEE 1px solid;
+ border-bottom:#888899 1px solid;
+ border-left:#DDDDEE 1px solid;
+ border-right:#888899 1px solid;
+ padding:0.3em;
+ background-color:#f8f8f8;
+ overflow: auto;
+ word-break: normal !important;
+ word-wrap: normal !important;
+ white-space: pre !important;
+ tab-size: 4;
+}
+
+div p img {
+ border:none;
+ max-width: 100%;
+ padding:0.3em;
+}
+
+table {
+ border-collapse: collapse;
+ margin: 16px 0px 16px 0px;
+}
+table th, table td {
+ border: solid 1px black;
+}

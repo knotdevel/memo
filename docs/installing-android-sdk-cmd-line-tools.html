@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta charset="utf-8" />
+<style>
+<!--
+@charset "UTF-8";
+
+* {
+ font-family : 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', sans-serif;
+}
+
+body {
+ color:black;
+ background-color:white;
+ margin-left:10%;
+ margin-right:10%;
+}
+
+h2 {
+ padding-bottom: .3em;
+ border-bottom: 3px solid #888;
+ margin-bottom: .3em;
+ counter-reset:h3counter;
+ font-size:140%;
+}
+
+h3 {
+ counter-reset:h4counter;
+ border-bottom:  2px solid #888;
+ padding-top:    0.3em;
+ padding-bottom: 0.3em;
+ margin-top:     2.0em;
+ margin-bottom:  0.3em;
+ font-size:130%;
+}
+
+h3:before {
+ content:counter(h3counter)". ";
+ counter-increment:h3counter;
+}
+
+h4 {
+ counter-reset:h5counter;
+ padding-top: 1em;
+ padding-bottom: .3em;
+ border-bottom: 2px solid #888;
+ margin-bottom: .3em;
+ font-size:120%;
+}
+
+h4:before {
+ content:counter(h3counter)"."counter(h4counter)" ";
+ counter-increment:h4counter;
+}
+
+h5 {
+ padding-top: 1em;
+ padding-bottom: .3em;
+ border-bottom: 1px solid #888;
+ margin-bottom: .3em;
+ font-size:110%;
+}
+
+h5:before {
+ content:counter(h3counter)"."counter(h4counter)"."counter(h5counter)" ";
+ counter-increment:h5counter;
+}
+
+pre {
+ font-family: 'Courier New', 'ＭＳ ゴシック', Courier, Monaco, monospace;
+ font-size:100%;
+ border-top:#DDDDEE 1px solid;
+ border-bottom:#888899 1px solid;
+ border-left:#DDDDEE 1px solid;
+ border-right:#888899 1px solid;
+ padding:0.3em;
+ background-color:#f8f8f8;
+ overflow: auto;
+ word-break: normal !important;
+ word-wrap: normal !important;
+ white-space: pre !important;
+ tab-size: 4;
+}
+
+div p img {
+ border:none;
+ max-width: 100%;
+ padding:0.3em;
+}
+
+table {
+ border-collapse: collapse;
+ margin: 16px 0px 16px 0px;
+}
+table th, table td {
+ border: solid 1px black;
+}
+-->
+</style>
+
+<script type='text/javascript'>
+function base64_to_blob(base64_data, mime_type) {
+  mime_type = mime_type || '';
+  sliceSize = 512;
+  var byteCharacters = atob(base64_data);
+  var byteArrays = [];
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+    var byteArray = new Uint8Array(byteNumbers);
+    byteArrays.push(byteArray);
+  }
+  var blob = new Blob(byteArrays, {type: mime_type});
+  return blob;
+}
+function handleDownload(content, mime_type, filename) {
+  var blob = base64_to_blob(content, mime_type);
+  if (window.navigator.msSaveBlob) { 
+    window.navigator.msSaveOrOpenBlob(blob, filename);
+  } else {
+    document.getElementById(filename).href = window.URL.createObjectURL(blob);
+  }
+}
+</script>
+
+<title>Installing Android SDK platform-tools with Command Line Tools</title>
+</head>
+<body>
+<h2>Installing Android SDK platform-tools with Command Line Tools</h2>
+<div align="right">
+<br/>
+</div>
+
+
+<h3>Environment</h3>
+<ul>
+<li>Ubuntu 16.04</li>
+</ul>
+
+
+<h3>Prerequisites</h3>
+
+
+<h4>Install JRE or JDK</h4>
+<pre>
+$ sudo apt-get install openjdk-8-jre
+or
+$ sudo apt-get install openjdk-8-jdk
+</pre>
+
+
+<h3>Download the Command Line Tools</h3>
+<ul>
+<li><a href="https://developer.android.com/studio/index.html#command-tools">https://developer.android.com/studio/index.html#command-tools</a></li>
+</ul>
+
+
+<h3>Install sdkmanager</h3>
+<pre>
+$ mkdir -p ~/android-sdk
+$ cd ~/android-sdk
+$ unzip ~/Downloads/sdk-tools-linux-4333796.zip
+$ cd tools/bin
+$ ./sdkmanager --help
+</pre>
+
+
+<h3>Install platform-tools</h3>
+<pre>
+$ ./sdkmanager --list
+$ ./sdkmanager &quot;platform-tools&quot;
+</pre>
+
+
+<h3>Install others</h3>
+<pre>
+$ ./sdkmanager &quot;platforms;android-28&quot; &quot;build-tools;28.0.3&quot;
+</pre>
+
+
+<h3>Add tools to $PATH</h3>
+<pre>
+$ echo 'PATH=~/android-sdk/platform-tools:~/android-sdk/tools/bin:$PATH' &gt;&gt; ~/.profile
+$ sudo reboot
+</pre>
+
+</body>
+</html>
