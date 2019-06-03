@@ -3,6 +3,35 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <meta charset="utf-8" />
+
+<script type='text/javascript'>
+function base64_to_blob(base64_data, mime_type) {
+  mime_type = mime_type || '';
+  sliceSize = 512;
+  var byteCharacters = atob(base64_data);
+  var byteArrays = [];
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+    var byteArray = new Uint8Array(byteNumbers);
+    byteArrays.push(byteArray);
+  }
+  var blob = new Blob(byteArrays, {type: mime_type});
+  return blob;
+}
+function handleDownload(content, mime_type, filename) {
+  var blob = base64_to_blob(content, mime_type);
+  if (window.navigator.msSaveBlob) { 
+    window.navigator.msSaveOrOpenBlob(blob, filename);
+  } else {
+    document.getElementById(filename).href = window.URL.createObjectURL(blob);
+  }
+}
+</script>
+
 <title>memo</title>
 </head>
 <body>
