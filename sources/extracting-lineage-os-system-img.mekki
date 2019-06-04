@@ -9,6 +9,7 @@
  $ ./bootstrap
  $ ./configure
  $ make
+ $ cd ..
 
 * Setup sdat2img
  $ git clone https://github.com/xpirt/sdat2img.git
