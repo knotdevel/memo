@@ -1,6 +1,7 @@
 MEKKI_SOURCE= \
   index.mekki \
-  installing-android-sdk-cmd-line-tools.mekki
+  installing-android-sdk-cmd-line-tools.mekki \
+  extracting-lineage-os-system-img.mekki
 
 SOURCE= \
   mekki.css \

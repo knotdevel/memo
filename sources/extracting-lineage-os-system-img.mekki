@@ -1,0 +1,26 @@
+\title Extracting Lineage OS 16.0 system.img
+
+* Setup brotli
+- [[https://github.com/google/brotli]]
+
+ $ wget https://github.com/google/brotli/archive/v1.0.4.tar.gz
+ $ tar zxvf v1.0.4.tar.gz
+ $ cd brotli-1.0.4
+ $ ./bootstrap
+ $ ./configure
+ $ make
+
+* Setup sdat2img
+ $ git clone https://github.com/xpirt/sdat2img.git
+
+* Extract the img
+ $ mkdir -p tmp
+ $ cd tmp
+ $ unzip ../lineage-16.0-YYYYMMDD-UNOFFICIAL-Device.zip
+ $ ../brotli-1.0.4/brotli -d system.new.dat.br
+ $ ../sdat2img/sdat2img.py system.transfer.list system.new.dat system.img
+
+* Mount the img
+ $ mkdir -p system-img
+ $ sudo mount -o loop system.img system-img
+ $ ls -al system-img/
