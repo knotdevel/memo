@@ -1,4 +1,5 @@
 \title Extracting Lineage OS 16.0 system.img
+\date 2019/06/05
 
 * Setup brotli
 - [[https://github.com/google/brotli]]
