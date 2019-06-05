@@ -13,6 +13,8 @@
  $ cd ..
 
 * Setup sdat2img
+- [[https://github.com/xpirt/sdat2img]]
+
  $ git clone https://github.com/xpirt/sdat2img.git
 
 * Extract the img
